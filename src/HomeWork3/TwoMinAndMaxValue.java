@@ -1,4 +1,4 @@
-package HomeWork3;
+package homeWork3;
 
 /* An array of 10 variables of type float *
  *  with finding their average value  */

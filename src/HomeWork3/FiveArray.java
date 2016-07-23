@@ -1,4 +1,4 @@
-package HomeWork3;
+package homeWork3;
 
 public class FiveArray {
 	/* Find the minimum element and his index in the array */
