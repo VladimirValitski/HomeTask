@@ -6,20 +6,15 @@ public class DataBase {
 	/* Creating customer databases */
 	public static void main(String[] args) {
 		Customer[] customer = addCustomer(); // create array customers
-
-		System.out.println("Ñïèñîê ïîêóïàòåëåé â àëôàâèòíîì ïîğÿäêå:");
-
+		System.out.println("Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿Ğ¾ĞºÑƒĞ¿Ğ°Ñ‚ĞµĞ»ĞµĞ¹ Ğ² Ğ°Ğ»Ñ„Ğ°Ğ²Ğ¸Ñ‚Ğ½Ğ¾Ğ¼ Ğ¿Ğ¾Ñ€ÑĞ´ĞºĞµ:");
 		listAlphabet(customer);// sort customers by alphabet
-
 		System.out.println(
-				"Ñïèñîê ïîêóïàòåëåé, ó êîòîğûõ íîìåğ êğåäèòíîé êàğòî÷êè íàõîäèòñÿ " + "â èíòåğâàëå(2000-3000):");
+				"Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿Ğ¾ĞºÑƒĞ¿Ğ°Ñ‚ĞµĞ»ĞµĞ¹, Ñƒ ĞºĞ¾Ñ‚Ğ¾Ñ€Ñ‹Ñ… Ğ½Ğ¾Ğ¼ĞµÑ€ ĞºÑ€ĞµĞ´Ğ¸Ñ‚Ğ½Ğ¾Ğ¹ ĞºĞ°Ñ€Ñ‚Ğ¾Ñ‡ĞºĞ¸ Ğ½Ğ°Ñ…Ğ¾Ğ´Ğ¸Ñ‚ÑÑ Ğ² Ğ¸Ğ½Ñ‚ĞµÑ€Ğ²Ğ°Ğ»Ğµ(2000-3000):");
 		listCreditCard(customer);// sort customers by CreditCard
-
 	}
 
 	private static Customer[] addCustomer() {
-		Customer[] customer = new Customer[5];// create method for array
-												// customers
+		Customer[] customer = new Customer[5];// create method for array customers
 		customer[0] = new Customer(1, "Valitski", "Vladimir", "Viktorovich", "Minsk,Kalinina 12", 2945, 3456);
 		customer[1] = new Customer(2, "Tartega", "Vlad", "Viktorovich", "Minsk,Linina1", 3545, 3116);
 		customer[2] = new Customer(3, "Farega", "Dmitri", "Karlovich", "Minsk,Lenina 23", 2224, 1567);
@@ -30,22 +25,17 @@ public class DataBase {
 
 	private static void listAlphabet(Customer[] customer) {
 		Arrays.sort(customer, new SortedBySurname());
-
 		for (Customer cust : customer) {
 			System.out.println(cust);
 		}
 	}
 
-	private static void listCreditCard(Customer[] customer) {// create method
-																// for sort
-																// customers by
-																// CreditCard
+	private static void listCreditCard(Customer[] customer) {
+		// create method for sort customers by/ CreditCard
 		for (Customer cus : customer) {
 			if ((cus.getNumberCreditCard() > 2000) && ((cus.getNumberCreditCard() < 3000))) {
 				System.out.println(cus);
 			}
 		}
-
 	}
-
 }
