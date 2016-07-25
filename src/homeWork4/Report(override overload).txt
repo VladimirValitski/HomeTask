@@ -1,0 +1,136 @@
+Отчет
+ Влияение на перегрузку и переопределние методов изменение сигнатуры метода,
+ типа возвращаемого значения и модификатора доступа.
+----------------------------------------------------------------------------
+@Переопределение (@Override) - изменение (переопределение) существующего метода.
+В переопределении метод имеет одинаковую сигнатуру и переопределяется в дочернем классе.
+Рассмотрим переопределение на простом примере: для примера создадим два класса: Parent и 
+наследуемый от него класс  Child в каждом из которых есть метод print().
+Пример 1
+class Parent {
+	 void print() {
+System.out.println("Text from Parent class");
+	 }
+}
+
+public class Child extends Parent {
+
+	@Override // переопределяем метод для класса Child
+	void print() {
+		System.out.println("Text from Child class");	
+	}
+	public static void main(String[] args) {
+		Child child = new Child();
+		child.print();
+		
+		Parent parent = new Parent();
+		parent.print();
+		
+		parent = child;// в переменную типа Parent  присваиваем объект типа Child
+		parent.print();
+
+	}
+
+}
+результат вывода:
+Text from Child class
+Text from Parent class
+Text from Child class // на этапе выполнения вызвался переопределенный метод из Child
+
+Пример 2
+class Parent1 {
+	protected void go1() {}
+	
+	String getStr() {return "Str";}
+	
+	 Number getNamber() {return 1;}
+	 
+	 private void go2(){}
+	 
+	 public static void go3(){System.out.println("Text");}
+}
+public class Child1 extends Parent1 {
+	
+		public void go1(){System.out.println("Text from Child class");}//ок. метод переопределился
+		//void go1() {} // ошибка. сузили  модификатор
+		//private void go1() {} // ошибка. сузили  модификатор
+		
+		String getStr() {return "Java";}
+		//Double getStr() {return new Double(3.0);} // ошибка. изменили возращаемый тип
+		
+		Double getNamber() {return 100.0;} // ок. переопределился, т.к. Double подкласс Number  
+		//
+		
+		 public void go2(){} // ок. происходит расширение модификатора доступа
+		 
+		 public static void go3(){System.out.println("New text");}
+		 //static void go3(){System.out.println("New text1111");} // ошибка нельзя переопределять модификатор ststic и наоборот
+
+}
+Правила переопределения:
+1. Метод в дочернем классе должен иметь такуюже сигнатуру, что и в родительском классе getStr()
+2. Метод в дочернем классе должен иметь такойже модификатор доступа, что и в родительском классе или шире. go()
+3. Возращаемый тип должен быть такойже , как и в родительском классе, либо быть подклассом данного типа. getNamber()
+
+
+
+***************************************************************************
+Перегрузка методов @Overload
+
+В Java можно создавать несколько методов с одинаковыми именами, но разными
+сигнатурами. Создание метода с тем же именем, но с другим набором параметров 
+и есть перегрузка. 
+
+Рассмотрим пример с перегруженными методами и определим какой
+из них будет выполнятся.
+public class MethodsOverload {
+	
+		public String get(){return "Java";}
+		
+		//public String get(){return "Text";}//ошибка. дублирование метода
+		
+		public String get(String str){return str;}// ок. новая сигнатура метода
+		
+		public String get(int n){return "Num: " + n;}// ок. новая сигнатура метода
+		
+		public String get(int n, String str){return  n + str;}// ок. новая сигнатура метода
+		
+		public String get(String str, int n){return str + n;}//ок. даже при перемене мест в параметрах 
+		// происходит перегрузка метода
+}
+Создаем объект класса MethodsOverload и реализовываем перегруженые методы:
+public class Main {
+	public static void main(String[] args) {
+		
+		MethodsOverload method = new MethodsOverload();
+		
+		String str1  = method.get();
+		String str2  = method.get("Hello World");
+		String str3  = method.get(100);
+		String str4  = method.get(3," Methods");
+		String str5  = method.get("Methods ",5);
+		
+		System.out.println(str1);
+		System.out.println(str2);
+		System.out.println(str3);
+		System.out.println(str4);
+		System.out.println(str5);
+
+	}
+}
+Результат:
+Java
+Hello World
+Num: 100
+3 Methods
+Methods 5
+
+Перегрузка происходит в пределах одного класса.
+Основные правила перегрузки:
+1. Названия методов должны быть идентичны. (иначе это другой метод)
+2. Перегружаемый метод не должен быть идентичен существующим методам по параметрам (по сигнатуре).
+
+
+
+
+
