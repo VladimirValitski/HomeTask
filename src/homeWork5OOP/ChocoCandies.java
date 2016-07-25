@@ -2,8 +2,14 @@ package homeWork5OOP;
 
 import java.io.Serializable;
 
+/**
+ * Create child class ChocoCandies public class ChocoCandies extends Sweets
+ * implements Serializable
+ * 
+ * @author user
+ *
+ */
 public class ChocoCandies extends Sweets implements Serializable {
-	/* Create child class ChocoCandies */
 
 	private static final long serialVersionUID = 1L;
 

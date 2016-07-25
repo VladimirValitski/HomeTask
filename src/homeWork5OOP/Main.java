@@ -1,7 +1,5 @@
 package homeWork5OOP;
 
-import homeWork5OOP.Sweets;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -10,27 +8,37 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * public class Main implements Serializable
+ * 
+ * @author user
+ *
+ */
 public class Main implements Serializable {
 	private static final long serialVersionUID = 1L;
-	/* Новогодний подарок.Определить иерархию конфет и прочих сладостей. 
-	Создать несколько объектов-конфет111. 
-	Собрать детский подарок с определением  его  веса. 
-	 Провести  сортировку  конфет  в подарке  на основе  одного 
-	из параметров. Найти конфету в подарке, соответствующую заданному диапазону содержания сахара.*/
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+	/*
+	 * Новогодний подарок.Определить иерархию конфет и прочих сладостей. Создать
+	 * несколько объектов-конфет. Собрать детский подарок с определением его
+	 * веса. Провести сортировку конфет в подарке на основе одного из
+	 * параметров. Найти конфету в подарке, соответствующую заданному диапазону
+	 * содержания сахара.
+	 */
+	public static void main(String[] args) throws IOException,
+			ClassNotFoundException {
 		try {
 			ArrayList<Sweets> gift = createGift();
-			//create gift by ArrayList<Sweets>
-			FileOutputStream fos = new FileOutputStream("gift.txt");//create serialized file gift.txt
+			// create gift by ArrayList<Sweets>
+			FileOutputStream fos = new FileOutputStream("gift.txt");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			for (Sweets s : gift){
-				oos.writeObject(s);}
+			oos.writeObject(gift);
 			oos.close();
 			System.out.print("Вес подарка (грамм): ");
 			findWeightGift(gift);
 			System.out.println();
 			// find weight of the gift
-			System.out.println("Список сладостей в подарке по диапазону содержания сахара (4-15 г): ");
+			System.out
+					.println("Список сладостей в подарке по диапазону содержания сахара (4-15 г): ");
 			sortForSugar(gift);
 			// sort Candies for sugar
 			System.out.println();
@@ -40,8 +48,15 @@ public class Main implements Serializable {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
+
 	}
 
+	/**
+	 * find weight of the gift private static void
+	 * findWeightGift(ArrayList<Sweets> gift)
+	 * 
+	 * @param gift
+	 */
 	private static void findWeightGift(ArrayList<Sweets> gift) {
 		// find weight of the gift
 		int weightGift = 0;
@@ -51,26 +66,44 @@ public class Main implements Serializable {
 		System.out.println(weightGift);
 	}
 
+	/**
+	 * sort Candies for price private static void sortForPrice(ArrayList<Sweets>
+	 * gift)
+	 * 
+	 * @param gift
+	 */
 	private static void sortForPrice(ArrayList<Sweets> gift) {
 		// sort Candies for price
 		Collections.sort(gift, new Comparator<Sweets>() {
 			public int compare(Sweets sweetsOne, Sweets sweetsTwo) {
-			return sweetsOne.getPrice() - sweetsTwo.getPrice();
-	}} );
+				return sweetsOne.getPrice() - sweetsTwo.getPrice();
+			}
+		});
 		for (Sweets sw : gift) {
 			System.out.println(sw);
 		}
 	}
 
+	/**
+	 * sort Candies for sugar private static void sortForSugar(ArrayList<Sweets>
+	 * gift)
+	 * 
+	 * @param gift
+	 */
 	private static void sortForSugar(ArrayList<Sweets> gift) {
 		// sort Candies for sugar
 		for (Sweets s : gift) {
-			if ((s.getSugar() > 2) && (s.getSugar() <= 10)) {
+			if ((s.getSugar() >= 4) && (s.getSugar() <= 10)) {
 				System.out.println(s);
 			}
 		}
 	}
 
+	/**
+	 * create ArrayList of Sweets public static ArrayList<Sweets> createGift()
+	 * 
+	 * @return
+	 */
 	public static ArrayList<Sweets> createGift() {
 		// create ArrayList of Sweets
 		Sweets sweetmeatsOne = new Sweetmeats("Chupa-Chups", 14, 8, 2500);
