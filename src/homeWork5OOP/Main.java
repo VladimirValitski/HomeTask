@@ -1,5 +1,7 @@
 package homeWork5OOP;
 
+import homeWork5OOP.Sweets;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -11,7 +13,7 @@ import java.util.Comparator;
 public class Main implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/* Новогодний подарок.Определить иерархию конфет и прочих сладостей. 
-	Создать несколько объектов-конфет. 
+	Создать несколько объектов-конфет111. 
 	Собрать детский подарок с определением  его  веса. 
 	 Провести  сортировку  конфет  в подарке  на основе  одного 
 	из параметров. Найти конфету в подарке, соответствующую заданному диапазону содержания сахара.*/
@@ -19,9 +21,10 @@ public class Main implements Serializable {
 		try {
 			ArrayList<Sweets> gift = createGift();
 			//create gift by ArrayList<Sweets>
-			FileOutputStream fos = new FileOutputStream("gift.txt");
+			FileOutputStream fos = new FileOutputStream("gift.txt");//create serialized file gift.txt
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(gift);
+			for (Sweets s : gift){
+				oos.writeObject(s);}
 			oos.close();
 			System.out.print("Вес подарка (грамм): ");
 			findWeightGift(gift);
