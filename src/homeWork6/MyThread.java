@@ -11,18 +11,17 @@ public class MyThread extends Thread {
 	 * public void run() method print elements from 1 to 100
 	 */
 	public void run() {
-		int n = 1;
-		for (int i = 1; i <= 10; i++) {
-			System.out.print(Thread.currentThread().getName() + ": ");
-			// print name of current thread
-			for (int j = 1; j <= 10; j++) {
-				System.out.print((n++) + " ");// print nums for 10 elements
+		for (int i = 0; i < 10; i++) {
+			System.out.print(Thread.currentThread().getName() + " ");
+			for (int j = 0; j < 10; j++) {
+				int n = (int) (Math.random() * 100);// create random elements
+				System.out.print(" " + n);
 			}
 			System.out.println();
 			try {
-				Thread.sleep(150);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			}
 		}
 	}

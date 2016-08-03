@@ -9,30 +9,22 @@ import java.io.InputStreamReader;
 public class TwoThread {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		Thread.currentThread().setName("Tread1"); // create threads
-		MyThread threadTwo = new MyThread("Tread2");
 		System.out.println("Введите слово *start* для запуска потоков: ");
-		try {
-			String word = reader.readLine();
-			if (word.equals("start")) {// check input string for correctly word
-				threadTwo.start(); // start threads
-			} else {
-				System.out.println("Введено неверное слово. Попробуйте еще раз.");
-				System.exit(0);
-			}
-			int n = 1;
-			for (int i = 1; i <= 10; i++) {
-				System.out.print(Thread.currentThread().getName() + ": ");
-				// print name of current thread
-				for (int j = 1; j <= 10; j++) {
-					System.out.print((n++) + " ");// print nums for 10 elements
-				}
-				System.out.println();
+		String word = reader.readLine();
+		if (word.equals("start")) {// check input string for correctly word
+			MyThread threadOne = new MyThread("Tread1");// create threads
+			threadOne.start(); // start threads
+			try {
 				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				System.out.println(e);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e);
+			MyThread threadTwo = new MyThread("Tread2");
+			threadTwo.start();
+		} else {
+			System.out.println("Введено неверное слово. Попробуйте еще раз.");
+			System.exit(0);
 		}
+
 	}
 }

@@ -2,9 +2,6 @@ package homeWork6;
 
 /* Create class MyThreadSync*/
 public class MyThreadSync extends Thread {
-
-	private static Object obj = new Object();
-
 	public MyThreadSync(String name) {
 		super(name);
 	}
@@ -12,26 +9,19 @@ public class MyThreadSync extends Thread {
 	/**
 	 * public void run() method print elements from 1 to 100
 	 */
-	public void run() {
-		int n = 1;
-		synchronized (obj) {
-			for (int i = 1; i <= 10; i++) {
-				try {
-					// obj.wait();
-					System.out.print(Thread.currentThread().getName() + ": ");
-					// print name of current thread
-					for (int j = 1; j <= 10; j++) {
-						System.out.print((n++) + " ");
-						// print nums for 10 elements
-					}
-					System.out.println();
-
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+	public synchronized void run() { // create synchronized method
+		for (int i = 0; i < 10; i++) {
+			System.out.print(Thread.currentThread().getName() + " ");
+			for (int j = 0; j < 10; j++) {
+				int n = (int) (Math.random() * 100);// create random elements
+				System.out.print(" " + n);
 			}
-			// obj.notify();
+			System.out.println();
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				System.out.println(e);
+			}
 		}
 	}
 }
