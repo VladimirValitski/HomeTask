@@ -15,6 +15,11 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import homeWork8InternatLoc.BubbleGum;
+import homeWork8InternatLoc.ChocoCandies;
+import homeWork8InternatLoc.Sweetmeats;
+import homeWork8InternatLoc.Sweets;
+
 public class Main implements Serializable {
 	private static final String FILENAME = "homeWork8Internat/resources/MessagesBundle";
 	private static final long serialVersionUID = 1L;
@@ -28,21 +33,38 @@ public class Main implements Serializable {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Выберете локализацию/ Choose Locale - 1: en | 2: ru");
 			String choose = reader.readLine();
-			switch (choose) {
-			case ("1"):
-				Locale localeEN = new Locale("en", "US");
-			ResourceBundle rbEN = ResourceBundle.getBundle("FILENAME", localeEN);
-			Date currentDate = new Date();
-			DateFormat dfEN = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, localeEN);			
-			System.out.println(dfEN.format(currentDate));
-			case ("2"):
+//			switch (choose) {
+//			case ("1"):
+//				Locale localeEN = new Locale("en", "US");
+//			ResourceBundle rbEN = ResourceBundle.getBundle(FILENAME, localeEN);
+//			Date currentDate = new Date();
+//			DateFormat dfEN = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, localeEN);			
+//			System.out.println(dfEN.format(currentDate));
+//			case ("2"):
+//				Locale localeRU = new Locale("ru", "RU");
+//				ResourceBundle rbRU = ResourceBundle.getBundle(FILENAME, localeRU);
+//				Date currentDateRU = new Date();
+//				DateFormat dfRU = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, localeRU);			
+//				System.out.println(dfRU.format(currentDateRU));
+//			}
+			Locale currentLoc;
+			if (choose.equals("2")){
 				Locale localeRU = new Locale("ru", "RU");
-				ResourceBundle rbRU = ResourceBundle.getBundle("FILENAME", localeRU);
+				currentLoc = localeRU;
+				ResourceBundle rbRU = ResourceBundle.getBundle(FILENAME, localeRU);
 				Date currentDateRU = new Date();
-				DateFormat dfRU = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, localeRU);			
+				DateFormat dfRU = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, localeRU);
 				System.out.println(dfRU.format(currentDateRU));
 			}
-			Locale currentLoc = Locale.getDefault();			
+			else {
+				Locale localeEN = new Locale("en", "US");
+				currentLoc = localeEN;
+				ResourceBundle rbEN = ResourceBundle.getBundle(FILENAME, localeEN);
+				Date currentDate = new Date();
+				DateFormat dfEN = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, localeEN);
+				System.out.println(dfEN.format(currentDate));
+			}
+						
 			ArrayList<Sweets> gift = createGift();
 			//create gift by ArrayList<Sweets>
 			FileOutputStream fos = new FileOutputStream("gift.txt");
@@ -106,32 +128,32 @@ public class Main implements Serializable {
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Sweets> createGift() {
 		// create ArrayList of Sweets
-		Sweetmeats sweetmeatsOne = new Sweetmeats("Chupa-Chups", 14, 8, 2500);
-		Sweetmeats sweetmeatsTwo = new Sweetmeats("Shock", 9, 7, 2750);
-		Sweetmeats sweetmeatsThree = new Sweetmeats("SuperMeats", 8, 6, 2600);
-		ChocoCandies chocoCandiesOne = new ChocoCandies("Mars", 15, 10, 3500);
-		ChocoCandies chocoCandiesTwo = new ChocoCandies("Bounty", 13, 12, 3750);
-		ChocoCandies chocoCandiesThree = new ChocoCandies("Twix", 18, 11, 3600);
-		ChocoCandies chocoCandiesFour = new ChocoCandies("Snickers", 21, 13, 3900);
-		ChocoCandies chocoCandiesFive = new ChocoCandies("Bueno", 10, 9, 4000);
-		BubbleGum bubbleGumOne = new BubbleGum("Orbit", 4, 15, 5500);
-		BubbleGum bubbleGumTwo = new BubbleGum("Love Is", 10, 5, 1500);
-		BubbleGum bubbleGumThree = new BubbleGum("Turbo", 12, 6, 1300);
-		BubbleGum bubbleGumFour = new BubbleGum("Stimorol", 17, 15, 4500);
+		Sweets sweetmeatsOne = new Sweetmeats("Chupa-Chups", 14, 8, 2500);
+		Sweets sweetmeatsTwo = new Sweetmeats("Shock", 9, 7, 2750);
+		Sweets sweetmeatsThree = new Sweetmeats("SuperMeats", 8, 6, 2600);
+		Sweets chocoCandiesOne = new ChocoCandies("Mars", 15, 10, 3500);
+		Sweets chocoCandiesTwo = new ChocoCandies("Bounty", 13, 12, 3750);
+		Sweets chocoCandiesThree = new ChocoCandies("Twix", 18, 11, 3600);
+		Sweets chocoCandiesFour = new ChocoCandies("Snickers", 21, 13, 3900);
+		Sweets chocoCandiesFive = new ChocoCandies("Bueno", 10, 9, 4000);
+		Sweets bubbleGumOne = new BubbleGum("Orbit", 4, 15, 5500);
+		Sweets bubbleGumTwo = new BubbleGum("Love Is", 10, 5, 1500);
+		Sweets bubbleGumThree = new BubbleGum("Turbo", 12, 6, 1300);
+		Sweets bubbleGumFour = new BubbleGum("Stimorol", 17, 15, 4500);
 		// create ArrayList<Sweets>
 		ArrayList<Sweets> gift = new ArrayList<Sweets>();
-		gift.addAll((Collection<? extends Sweets>) sweetmeatsOne); // add all sweets
-		gift.addAll((Collection<? extends Sweets>) sweetmeatsTwo);
-		gift.addAll((Collection<? extends Sweets>) sweetmeatsThree);
-		gift.addAll((Collection<? extends Sweets>) chocoCandiesOne);
-		gift.addAll((Collection<? extends Sweets>) chocoCandiesTwo);
-		gift.addAll((Collection<? extends Sweets>) chocoCandiesThree);
-		gift.addAll((Collection<? extends Sweets>) chocoCandiesFour);
-		gift.addAll((Collection<? extends Sweets>) chocoCandiesFive);
-		gift.addAll((Collection<? extends Sweets>) bubbleGumOne);
-		gift.addAll((Collection<? extends Sweets>) bubbleGumTwo);
-		gift.addAll((Collection<? extends Sweets>) bubbleGumThree);
-		gift.addAll((Collection<? extends Sweets>) bubbleGumFour);
+		gift.add(sweetmeatsOne); // add all sweets
+		gift.add(sweetmeatsTwo);
+		gift.add(sweetmeatsThree);
+		gift.add(chocoCandiesOne);
+		gift.add(chocoCandiesTwo);
+		gift.add(chocoCandiesThree);
+		gift.add(chocoCandiesFour);
+		gift.add(chocoCandiesFive);
+		gift.add(bubbleGumOne);
+		gift.add(bubbleGumTwo);
+		gift.add(bubbleGumThree);
+		gift.add(bubbleGumFour);
 		return gift;
 	}
 }
