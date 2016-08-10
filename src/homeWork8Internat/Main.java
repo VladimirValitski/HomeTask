@@ -30,7 +30,7 @@ public class Main implements Serializable {
 			String choose = reader.readLine();
 			switch (choose) {
 			case ("1"):
-				Locale localeEN = new Locale("en", "EN");
+				Locale localeEN = new Locale("en", "US");
 			ResourceBundle rbEN = ResourceBundle.getBundle("FILENAME", localeEN);
 			Date currentDate = new Date();
 			DateFormat dfEN = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, localeEN);			
